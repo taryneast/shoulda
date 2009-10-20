@@ -6,5 +6,6 @@ class AddressTest < ActiveSupport::TestCase
   should_belong_to :addressable
   should_validate_uniqueness_of :title, :scoped_to => [:addressable_id, :addressable_type]
   should_ensure_length_at_least :zip, 5
+  should_ensure_length_at_most :zip, 9
   should_validate_numericality_of :zip
 end

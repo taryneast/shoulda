@@ -203,6 +203,28 @@ module Shoulda # :nodoc:
         end
       end
 
+      # Ensures that the length of the attribute is at most a certain length
+      #
+      # Options:
+      # * <tt>:long_message</tt> - value the test expects to find in <tt>errors.on(:attribute)</tt>.
+      #   Regexp or string.  Default = <tt>I18n.translate('activerecord.errors.messages.too_long') % max_length</tt>
+      #
+      # Example:
+      #   should_ensure_length_at_most :name, 255
+      #
+      def should_ensure_length_at_most(attribute, max_length, opts = {})
+        long_message = get_options!([opts], :long_message)
+
+        matcher = ensure_length_of(attribute).
+          is_at_most(max_length).
+          with_long_message(long_message)
+
+        should matcher.description do
+          assert_accepts matcher, subject
+        end
+      end
+      
+
       # Ensures that the length of the attribute is exactly a certain length
       #
       # Options:
