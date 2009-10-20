@@ -49,8 +49,7 @@ module Shoulda # :nodoc:
         end
 
         def is_equal_to(length)
-          @minimum = length
-          @maximum = length
+          @minimum = @maximum = length
           @short_message ||= :wrong_length
           self
         end
@@ -96,12 +95,14 @@ module Shoulda # :nodoc:
         def translate_messages!
           if Symbol === @short_message
             @short_message = default_error_message(@short_message,
-                                                   :count => @minimum)
+                                    :count => @minimum, 
+                                    :attribute => @attribute.to_s.capitalize)
           end
 
           if Symbol === @long_message
             @long_message = default_error_message(@long_message,
-                                                  :count => @maximum)
+                                    :count => @maximum, 
+                                    :attribute => @attribute.to_s.capitalize)
           end
         end
 

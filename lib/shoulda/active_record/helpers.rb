@@ -3,8 +3,8 @@ module Shoulda # :nodoc:
     module Helpers
       def pretty_error_messages(obj) # :nodoc:
         obj.errors.map do |a, m| 
-          msg = "#{a} #{m}" 
-          msg << " (#{obj.send(a).inspect})" unless a.to_sym == :base
+          msg = " on: (#{a}) msg: (#{m})" 
+          msg << " for: (#{obj.send(a).inspect})" unless a.to_sym == :base
         end
       end
 
