@@ -96,13 +96,13 @@ module Shoulda # :nodoc:
           if Symbol === @short_message
             @short_message = default_error_message(@short_message,
                                     :count => @minimum, 
-                                    :attribute => @attribute.to_s.capitalize)
+                                    :attribute => @attribute.to_s.humanize.capitalize)
           end
 
           if Symbol === @long_message
             @long_message = default_error_message(@long_message,
                                     :count => @maximum, 
-                                    :attribute => @attribute.to_s.capitalize)
+                                    :attribute => @attribute.to_s.humanize.capitalize)
           end
         end
 
